@@ -36,11 +36,11 @@ jobs:
           build-args: VERSION=${{ steps.lego_ver.outputs.version }}
           push: true
           tags: |
-            ghcr.io/icefo/acme-lego-cron:latest
-            ghcr.io/icefo/acme-lego-cron:${{ steps.lego_ver.outputs.version }}
+            ghcr.io/${{ github.repository }}:latest
+            ghcr.io/${{ github.repository }}:${{ steps.lego_ver.outputs.version }}
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v1
         with:
-          subject-name: ghcr.io/icefo/acme-lego-cron
+          subject-name: ghcr.io/${{ github.repository }}
           subject-digest: ${{ steps.build_push.outputs.digest }}
           push-to-registry: true
