@@ -1,14 +1,10 @@
-# Dockerfile: https://hub.docker.com/r/goacme/lego/
-
 ARG VERSION
 FROM goacme/lego:${VERSION} AS lego
 
 ARG VERSION
 FROM alpine:3
-LABEL maintainer="me@brahma.world"
-RUN apk update \
-    && apk add --no-cache ca-certificates tzdata \
-    && update-ca-certificates
+LABEL maintainer="adrien@icefo.net"
+RUN apk upgrade --no-cache && apk add ca-certificates tzdata wget bash --no-cache
 
 COPY --from=lego /lego /
 COPY app/*.sh /app/
