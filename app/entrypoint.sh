@@ -1,9 +1,10 @@
-#!/bin/sh
-set -a
+#! /usr/bin/env bash
+set -Eeuo pipefail
 
 # update ca-certificates on container startup
 apk add --update-cache --upgrade apk-tools ca-certificates
-#RUN it once to initiate
-MODE=run /app/run.sh
 
-crond -f
+#RUN it once to initiate
+python3 -m "app.main"
+
+exec crond -f

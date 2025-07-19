@@ -1,3 +1,7 @@
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-17  7   */2 *   * /app/run.sh
-5   5   *   */2 * apk add --update-cache --upgrade apk-tools ca-certificates
+
+# At 07:17 AM, every 2 days
+17  7  */2  *   * cd /opt && python3 -m "app.main"
+
+At 05:05 AM, every 2 months
+5   5  *  */2 * apk add --update-cache --upgrade apk-tools ca-certificates

@@ -1,0 +1,23 @@
+volumes:
+  lego_data:
+  certs:
+    name: "acme-certs"
+
+# Careful: Use staging for tests: https://letsencrypt.org/docs/rate-limits/
+
+services:
+  acme-lego-cron:
+    build:
+      context: .
+      args:
+        VERSION: v4.24.0
+    # If you change this, also update the Docker maintenance container -> ssl_renewed_restart/main.py script
+    container_name: "acme-lego-cron"
+    environment:
+      - CERT_OWNERS=0;1000
+      - STAGING=1
+      # Specify other mandatory env variables here: DOMAINS, <PROVIDER>, <PROVIDER>_TOKEN
+    restart: no
+    volumes:
+      - lego_data:/lego_data
+      - certs:/certs
