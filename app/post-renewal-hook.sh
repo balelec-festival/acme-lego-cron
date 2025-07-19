@@ -26,7 +26,7 @@ for owner in "${CERT_OWNERS[@]}"; do
   cp "${CERTS_VOLUME}/cert.key" "${CERTS_VOLUME}/owned_by/${owner}/cert.key"
   cp "${CERTS_VOLUME}/cert.crt" "${CERTS_VOLUME}/owned_by/${owner}/cert.crt"
 
-  chmod -R 550 "${CERTS_VOLUME}/owned_by/${owner}"
+  chmod -R 500 "${CERTS_VOLUME}/owned_by/${owner}"
   chown -R "${owner}:${owner}" "${CERTS_VOLUME}/owned_by/${owner}"
 done
 
